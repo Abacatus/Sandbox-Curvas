@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://c4mtuhc4vd72n"]
+
+[ext_resource type="Script" uid="uid://cyaoj6xic2te3" path="res://Scripts/player.gd" id="1_4ofe7"]
+[ext_resource type="Script" uid="uid://dkuisbcjv2olo" path="res://Scripts/plataforma.gd" id="2_4ofe7"]
+[ext_resource type="PackedScene" uid="uid://r4o0j6okioo8" path="res://Cenas/projetil.tscn" id="2_o0qou"]
+[ext_resource type="Script" uid="uid://doaq5x05pyrs0" path="res://Cenas/alvo.gd" id="3_gxfnd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57qmd"]
+size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0u6y"]
+size = Vector2(40, 40)
+
+[node name="Curvas" type="Node2D" unique_id=116519498]
+
+[node name="Fundo" type="ColorRect" parent="." unique_id=241195805]
+offset_right = 1150.0
+offset_bottom = 650.0
+color = Color(0.5931336, 0.59313357, 0.59313357, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=86165574]
+visible = false
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=786180951]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control" unique_id=12230608]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=2107016681]
+position = Vector2(256, 496)
+script = ExtResource("1_4ofe7")
+velocidade = 350.0
+forca_pulo = -600.0
+projetil_scene = ExtResource("2_o0qou")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=478170056]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="Mira" type="Marker2D" parent="Player" unique_id=158869468]
+position = Vector2(10, 10)
+
+[node name="ColorRect" type="ColorRect" parent="Player" unique_id=728562342]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Alvo" type="Area2D" parent="." unique_id=282822559 groups=["Alvos"]]
+position = Vector2(743, 565)
+script = ExtResource("3_gxfnd")
+plataforma = NodePath("../Plataforma")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alvo" unique_id=1751930290]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_yf5fn")
+
+[node name="ColorRect" type="ColorRect" parent="Alvo" unique_id=1530710254]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.98843867, 0, 0.094129376, 1)
+
+[node name="Plataforma" type="AnimatableBody2D" parent="." unique_id=759226271]
+position = Vector2(592, 512)
+scale = Vector2(3, 0.5)
+script = ExtResource("2_4ofe7")
+voltar = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma" unique_id=1886073584]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_57qmd")
+
+[node name="ColorRect" type="ColorRect" parent="Plataforma" unique_id=138815899]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.8006943, 0.43928212, 5.198121e-06, 1)
+
+[node name="Chao" type="StaticBody2D" parent="." unique_id=1562337911]
+position = Vector2(-23.99997, 608)
+scale = Vector2(30, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chao" unique_id=1220334719]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_d0u6y")
+
+[node name="ColorRect" type="ColorRect" parent="Chao" unique_id=134514389]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1.732707e-06, 0.67515486, 0.6755492, 1)

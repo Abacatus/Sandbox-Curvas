@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://r4o0j6okioo8"]
+
+[ext_resource type="Script" uid="uid://8u06yk5wjyo" path="res://projetil.gd" id="1_bb2x1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(40, 40)
+
+[node name="Projetil" type="Area2D" unique_id=337433850]
+scale = Vector2(0.5, 0.5)
+collision_layer = 2
+script = ExtResource("1_bb2x1")
+tempo_de_vida = 6.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=909661497]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=647579682]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 1, 0, 1)
